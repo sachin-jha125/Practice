@@ -25,7 +25,7 @@ const request = await prisma.request.create({
   }
 });
 
-console.log(request);
+
     
 res.json({answer:result,id:request.id});
 

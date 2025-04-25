@@ -19,7 +19,7 @@ vi.mock("../db");
 
 describe("Test the sum function",()=>{
     it("Should return 3 when 1 + 2",async()=>{
-        vi.spyOn(prisma.request,"create");
+        
         prisma.request.create.mockResolvedValue({
             id:1,
             answer:3,
@@ -27,10 +27,12 @@ describe("Test the sum function",()=>{
             a:1,
             b:2,
         });
+        vi.spyOn(prisma.request,"create");
        const res= await request(app).post("/sum").send({
             a:1,
             b:2
         })
+        
         expect(prisma.request.create).toHaveBeenCalledWith({
             data: {
                 a: 1,
